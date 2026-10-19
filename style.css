@@ -1,0 +1,1053 @@
+/* =========================================================
+   20/10 ULTRA CUTE, ADORABLE, MARSHMALLOW CANDY EXPERIENCE
+   Designed for Trần Mỹ Tâm & Lê Kiều Vy
+   Fonts: Mali & Quicksand • Soft Pastel Claymorphism
+   ========================================================= */
+
+:root {
+  --font-cute: 'Mali', cursive, sans-serif;
+  --font-rounded: 'Quicksand', sans-serif;
+  --font-bubble: 'Comfortaa', cursive, sans-serif;
+
+  /* Sweet Candy & Marshmallow Palette */
+  --bg-creamy: #fffaf5;
+  --pink-milk: #ffeef2;
+  --pink-bubble: #ff758c;
+  --pink-deep: #ff477e;
+  --pink-soft: #ffd1dc;
+
+  --yellow-butter: #fff9db;
+  --yellow-warm: #feca57;
+  --mint-candy: #e3fafc;
+  --mint-accent: #20bf6b;
+  --purple-lilac: #f3e8ff;
+
+  --text-cocoa: #3d314a;
+  --text-muted: #6c5ce7;
+  --text-soft: #7f8c8d;
+
+  --card-marshmallow: rgba(255, 255, 255, 0.94);
+  --border-cute: #ffd8e4;
+  --shadow-cute: 0 16px 40px rgba(255, 117, 140, 0.18), 0 6px 14px rgba(0, 0, 0, 0.04);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-cute);
+  background: linear-gradient(135deg, #fff0f5 0%, #fff7eb 50%, #f0f7ff 100%);
+  color: var(--text-cocoa);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+}
+
+/* Three.js Canvas */
+#webgl-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+/* =========================================================
+   TOP CUTE BAR & CANDY PROGRESS BAR
+   ========================================================= */
+.cute-top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 12px 24px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px dashed #ffd8e4;
+}
+
+@media (max-width: 650px) {
+  .cute-top-bar {
+    padding: 10px 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+.cute-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff0f3;
+  color: var(--pink-deep);
+  font-family: var(--font-rounded);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 30px;
+  border: 1.5px solid #ffccd5;
+}
+
+.heart-blink {
+  animation: pulseBeat 1.2s infinite;
+}
+
+@keyframes pulseBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.candy-progress-track {
+  flex: 1;
+  max-width: 480px;
+  height: 12px;
+  background: #ffe3e8;
+  border-radius: 20px;
+  border: 1.5px solid #ffccd5;
+  position: relative;
+  overflow: visible;
+}
+
+.candy-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff758c 0%, #ff8da1 100%);
+  border-radius: 20px;
+  position: relative;
+  transition: width 0.25s linear;
+}
+
+.progress-candy-head {
+  position: absolute;
+  right: -10px;
+  top: -8px;
+  font-size: 1.3rem;
+  line-height: 1;
+  animation: bounceHead 1s infinite alternate;
+}
+
+@keyframes bounceHead {
+  from { transform: translateY(0); }
+  to { transform: translateY(-4px); }
+}
+
+.cute-sound-btn {
+  background: #ffffff;
+  border: 2px solid #ffd8e4;
+  border-radius: 30px;
+  padding: 6px 14px;
+  font-family: var(--font-rounded);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--pink-deep);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 10px rgba(255, 117, 140, 0.15);
+  transition: all 0.2s ease;
+}
+
+.cute-sound-btn:hover {
+  background: #fff0f3;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   START CURTAIN OVERLAY (CỰC CUTE)
+   ========================================================= */
+.cute-start-curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: rgba(255, 240, 245, 0.88);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.cute-start-curtain.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.curtain-bubble-card {
+  background: #ffffff;
+  border: 3px solid #ffd8e4;
+  border-radius: 36px;
+  padding: 38px 36px;
+  max-width: 620px;
+  width: 90%;
+  text-align: center;
+  box-shadow: var(--shadow-cute);
+  position: relative;
+  animation: popInBounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popInBounce {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.bunny-ears-deco {
+  font-size: 3.5rem;
+  letter-spacing: 8px;
+  margin-bottom: 12px;
+  animation: earWiggle 2s infinite ease-in-out;
+}
+
+@keyframes earWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-6deg); }
+  75% { transform: rotate(6deg); }
+}
+
+.curtain-stickers {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sticker-chip {
+  font-family: var(--font-rounded);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.pink-chip {
+  background: #ffe3e8;
+  color: var(--pink-deep);
+  border: 1px dashed var(--pink-bubble);
+}
+
+.yellow-chip {
+  background: #fff9db;
+  color: #d9480f;
+  border: 1px dashed #fcc419;
+}
+
+.curtain-cute-title {
+  font-family: var(--font-cute);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-cocoa);
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+
+.highlight-names {
+  font-family: var(--font-bubble);
+  font-size: 2.1rem;
+  color: var(--pink-deep);
+  display: inline-block;
+  margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+  .curtain-cute-title { font-size: 1.5rem; }
+  .highlight-names { font-size: 1.7rem; }
+}
+
+.curtain-cute-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #636e72;
+  margin-bottom: 28px;
+}
+
+.btn-bubble-start {
+  background: linear-gradient(135deg, #ff758c 0%, #ff8da1 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 36px;
+  font-family: var(--font-rounded);
+  font-size: 1.12rem;
+  font-weight: 900;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(255, 117, 140, 0.45);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-bubble-start:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 14px 40px rgba(255, 117, 140, 0.6);
+}
+
+/* =========================================================
+   STORY STAGE & CUTE CARDS (CHUYỂN THEO CAMERA 3D)
+   ========================================================= */
+.story-stage {
+  position: fixed;
+  top: 56px;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  pointer-events: none;
+  padding: 20px;
+}
+
+.cute-card {
+  background: var(--card-marshmallow);
+  border: 3px solid var(--border-cute);
+  border-radius: 32px;
+  padding: 34px 36px;
+  max-width: 720px;
+  width: 90%;
+  box-shadow: var(--shadow-cute);
+  position: relative;
+  display: none;
+  opacity: 0;
+  transform: translateY(25px) scale(0.96);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.3, 1),
+              transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+  pointer-events: auto;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .cute-card {
+    padding: 24px 18px;
+    border-radius: 24px;
+  }
+}
+
+.cute-card.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Washi tape decoration */
+.cloud-tape-deco {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 120px;
+  height: 24px;
+  background: rgba(255, 230, 180, 0.9);
+  border-left: 3px dashed rgba(255,255,255,0.7);
+  border-right: 3px dashed rgba(255,255,255,0.7);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.tape-pink {
+  background: rgba(255, 182, 193, 0.9);
+}
+
+.tape-mint {
+  background: rgba(168, 230, 207, 0.9);
+}
+
+.tape-yellow {
+  background: rgba(254, 202, 87, 0.9);
+}
+
+.card-tag {
+  display: inline-block;
+  background: #fff0f3;
+  color: var(--pink-deep);
+  font-family: var(--font-rounded);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  border: 1px dashed var(--pink-bubble);
+}
+
+.pink-tag { background: #ffe3e8; color: var(--pink-deep); }
+.mint-tag { background: #e3fafc; color: #0c8599; border-color: #66d9e8; }
+.yellow-tag { background: #fff9db; color: #d9480f; border-color: #fcc419; }
+
+/* Chibi duo in scene 0 */
+.chibi-duo-float {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 14px;
+}
+
+.chibi-avatar-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.chibi-emoji {
+  font-size: 3rem;
+  background: #ffffff;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  border: 2px solid #ffd8e4;
+}
+
+.chibi-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-cocoa);
+}
+
+.flying-love-heart {
+  font-size: 2rem;
+  animation: heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+}
+
+.cute-heading {
+  font-family: var(--font-cute);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-cocoa);
+  margin-bottom: 10px;
+}
+
+.cute-body-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4a4a4a;
+}
+
+/* =========================================================
+   SCENE 1 & 2: PROFILE PERSON CARDS (MỸ TÂM & KIỀU VY)
+   ========================================================= */
+.profile-cute-row {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 24px;
+  align-items: center;
+  text-align: left;
+}
+
+@media (max-width: 650px) {
+  .profile-cute-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 16px;
+  }
+}
+
+.chibi-portrait-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chibi-frame {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.frame-tam {
+  border: 3px solid #ff758c;
+  background: linear-gradient(135deg, #ffd3b6 0%, #ffaaa5 100%);
+}
+
+.frame-vy {
+  border: 3px solid #20bf6b;
+  background: linear-gradient(135deg, #d4f0f0 0%, #a8e6cf 100%);
+}
+
+.big-chibi {
+  font-size: 4.8rem;
+  line-height: 1;
+}
+
+.accessory-deco {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 1.8rem;
+  animation: flowerWobble 2s infinite ease-in-out alternate;
+}
+
+@keyframes flowerWobble {
+  from { transform: rotate(-8deg); }
+  to { transform: rotate(12deg); }
+}
+
+.chibi-subtag {
+  font-family: var(--font-rounded);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--text-cocoa);
+  margin-top: 10px;
+}
+
+.cute-nick {
+  font-family: var(--font-cute);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin-bottom: 2px;
+}
+
+.profile-hero-name {
+  font-family: var(--font-bubble);
+  font-size: 2.1rem;
+  color: var(--text-cocoa);
+  margin-bottom: 8px;
+}
+
+.sweet-letter-box {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px dashed #ffd8e4;
+  border-radius: 18px;
+  padding: 14px 18px;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #333333;
+  margin-bottom: 12px;
+}
+
+.sweet-letter-box p {
+  margin-bottom: 6px;
+}
+
+.sweet-letter-box p:last-child {
+  margin-bottom: 0;
+}
+
+.sweet-highlight {
+  font-weight: 700;
+  color: var(--pink-deep);
+}
+
+.cute-perks-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 650px) {
+  .cute-perks-list {
+    justify-content: center;
+  }
+}
+
+.cute-perk {
+  background: #f0fff4;
+  border: 1px solid #c6f6d5;
+  color: #22543d;
+  font-family: var(--font-rounded);
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* =========================================================
+   SCENE 3: TEAM CUTE CARDS
+   ========================================================= */
+.team-cute-icons {
+  font-size: 2.4rem;
+  letter-spacing: 8px;
+  margin-bottom: 12px;
+}
+
+.team-cute-speech {
+  max-width: 580px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #333333;
+}
+
+.speech-cute-lead {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--pink-deep);
+  margin-top: 14px;
+}
+
+/* =========================================================
+   SCENE 4: SUSPENSE BEFORE CLOSE EYES
+   ========================================================= */
+.alert-cute-sticker {
+  display: inline-block;
+  background: #ffe3e3;
+  color: #c92a2a;
+  border: 2px dashed #ff8787;
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-family: var(--font-rounded);
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  animation: alertPulse 1.2s infinite;
+}
+
+@keyframes alertPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.suspense-cute-title {
+  font-family: var(--font-bubble);
+  font-size: 1.85rem;
+  color: var(--text-cocoa);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.sub-cute-pink {
+  font-family: var(--font-cute);
+  font-size: 1.45rem;
+  color: var(--pink-deep);
+}
+
+.suspense-cute-p {
+  font-size: 1.08rem;
+  color: #333333;
+  margin-bottom: 16px;
+}
+
+.rules-cute-notebook {
+  background: #fffdf5;
+  border: 2px solid #ffe066;
+  border-radius: 20px;
+  padding: 16px 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.notebook-title {
+  font-family: var(--font-rounded);
+  font-weight: 900;
+  font-size: 1rem;
+  color: #e67700;
+  margin-bottom: 4px;
+}
+
+.highlight-cute-rule {
+  background: #ffe3e3;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px dashed #ff8787;
+  color: #c92a2a;
+  font-weight: 700;
+}
+
+/* =========================================================
+   SCENE 5: EYES CLOSED THEATER MODE (SIÊU CUTE)
+   ========================================================= */
+.cute-eyes-closed-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease;
+}
+
+.cute-eyes-closed-screen.hidden {
+  display: none;
+}
+
+.cute-dark-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #241c38 0%, #110d1c 100%);
+  opacity: 0.98;
+}
+
+.cute-theater-box {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #ffffff;
+  max-width: 650px;
+  padding: 24px;
+}
+
+.monkey-bounce-anim {
+  font-size: 6rem;
+  line-height: 1;
+  margin-bottom: 12px;
+  animation: monkeyBounce 1.5s infinite ease-in-out alternate;
+}
+
+@keyframes monkeyBounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-12px); }
+}
+
+.theater-big-shout {
+  font-family: var(--font-bubble);
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: #ff7675;
+  text-shadow: 0 0 30px rgba(255, 118, 117, 0.7);
+  margin-bottom: 12px;
+}
+
+@media (max-width: 600px) {
+  .theater-big-shout {
+    font-size: 1.7rem;
+  }
+}
+
+.no-peeking-badge-cute {
+  display: inline-block;
+  background: #d63031;
+  color: #ffffff;
+  font-family: var(--font-rounded);
+  font-weight: 900;
+  font-size: 0.95rem;
+  padding: 6px 22px;
+  border-radius: 30px;
+  margin-bottom: 22px;
+  animation: pulseNoPeeking 1.2s infinite;
+}
+
+@keyframes pulseNoPeeking {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.cute-hand-guide {
+  margin-bottom: 22px;
+}
+
+.guide-lead-text {
+  font-size: 1.2rem;
+  color: #fab1a0;
+  margin-bottom: 10px;
+}
+
+.hands-cute-pill {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed #ffeaa7;
+  border-radius: 20px;
+  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-rounded);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffeaa7;
+  margin-bottom: 12px;
+}
+
+.hands-icon {
+  font-size: 2rem;
+}
+
+.guide-follow-text {
+  font-size: 1.05rem;
+  color: #dfe6e9;
+}
+
+.cute-radar-ping {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 20px;
+  border-radius: 30px;
+  margin-bottom: 22px;
+  font-family: var(--font-rounded);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #55efc4;
+}
+
+.sonar-dot {
+  width: 9px;
+  height: 9px;
+  background: #00b894;
+  border-radius: 50%;
+  position: relative;
+}
+
+.sonar-dot::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 2px solid #00b894;
+  animation: pingSonar 1.5s infinite;
+}
+
+@keyframes pingSonar {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+.btn-cute-unveil {
+  background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 36px;
+  font-family: var(--font-rounded);
+  font-size: 1.12rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 184, 148, 0.45);
+  transition: all 0.25s ease;
+}
+
+.btn-cute-unveil:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(0, 184, 148, 0.65);
+}
+
+/* =========================================================
+   SCENE 6: CELEBRATION FINALE (CỰC CUTE)
+   ========================================================= */
+.cute-celebration-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 240, 245, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.cute-celebration-screen.hidden {
+  display: none;
+}
+
+.celebration-candy-card {
+  background: #ffffff;
+  border: 3px solid #ffd8e4;
+  border-radius: 36px;
+  padding: 40px 36px;
+  max-width: 680px;
+  width: 90%;
+  text-align: center;
+  box-shadow: var(--shadow-cute);
+}
+
+.top-candy-badge {
+  display: inline-block;
+  background: #ffe3e8;
+  color: var(--pink-deep);
+  font-family: var(--font-rounded);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.party-emojis-float {
+  font-size: 3.2rem;
+  letter-spacing: 10px;
+  margin-bottom: 12px;
+  animation: heartbeat 2s infinite ease-in-out;
+}
+
+.celebration-pink-title {
+  font-family: var(--font-bubble);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--pink-deep);
+  margin-bottom: 6px;
+}
+
+.celebration-sub-title {
+  font-family: var(--font-rounded);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-cocoa);
+  margin-bottom: 18px;
+}
+
+.celebration-sweet-p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4a4a4a;
+}
+
+.final-team-love {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin-top: 14px;
+}
+
+.celebration-btns {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.btn-firework-burst {
+  background: linear-gradient(135deg, #ff758c 0%, #ff8da1 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 30px;
+  font-family: var(--font-rounded);
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(255, 117, 140, 0.4);
+  transition: all 0.2s ease;
+}
+
+.btn-firework-burst:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 117, 140, 0.6);
+}
+
+.btn-cute-replay {
+  background: #ffffff;
+  border: 2px solid #ffd8e4;
+  color: #636e72;
+  border-radius: 50px;
+  padding: 14px 26px;
+  font-family: var(--font-rounded);
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cute-replay:hover {
+  border-color: var(--pink-deep);
+  color: var(--pink-deep);
+}
+
+/* =========================================================
+   COUNTDOWN MODAL (CỰC CUTE)
+   ========================================================= */
+.cute-countdown-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100000;
+  background: rgba(255, 240, 245, 0.92);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cute-countdown-modal.hidden {
+  display: none;
+}
+
+.countdown-candy-bubble {
+  text-align: center;
+  background: #ffffff;
+  border: 3px solid #ffd8e4;
+  border-radius: 40px;
+  padding: 40px 50px;
+  box-shadow: var(--shadow-cute);
+}
+
+.countdown-call {
+  font-family: var(--font-rounded);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--pink-deep);
+  margin-bottom: 8px;
+}
+
+.countdown-giant-digit {
+  font-family: var(--font-bubble);
+  font-size: 9rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--pink-bubble);
+  text-shadow: 0 10px 30px rgba(255, 117, 140, 0.4);
+  animation: pulseBigNum 1s ease-out infinite;
+}
+
+@keyframes pulseBigNum {
+  0% { transform: scale(1.3); opacity: 0.5; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.92); opacity: 0.85; }
+}
+
+.countdown-sub-hint {
+  font-size: 1.4rem;
+  color: #f39c12;
+  margin-top: 10px;
+}
