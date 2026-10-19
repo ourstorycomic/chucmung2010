@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20/10 Siêu Cute Cho Mỹ Tâm & Kiều Vy 🌸✨</title>
+  <!-- Google Fonts: Mali & Quicksand - Cực kỳ cute, bo tròn, dễ thương, chuẩn tiếng Việt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Mali:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Quicksand:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Three.js for 3D Marshmallow Clouds & Candy Hearts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP for Smooth Auto-Play Transitions -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 3D WebGL Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Cute Header Bar -->
+  <header class="cute-top-bar">
+    <div class="cute-badge-pill">
+      <span class="heart-blink">💖</span>
+      <span>HỘP QUÀ 20/10 SIÊU CUTE CỦA TEAM</span>
+      <span class="heart-blink">✨</span>
+    </div>
+
+    <!-- Cute Candy Progress Bar -->
+    <div class="candy-progress-track">
+      <div id="candyProgressFill" class="candy-progress-fill">
+        <span class="progress-candy-head">🍓</span>
+      </div>
+    </div>
+
+    <button id="soundToggleBtn" class="cute-sound-btn" title="Bật/Tắt nhạc dễ thương">
+      <span id="soundIcon">🎵</span>
+      <span class="sound-label">Nhạc: BẬT</span>
+    </button>
+  </header>
+
+  <!-- START OVERLAY (CHỈ 1 CHẠM LÀ TỰ ĐỘNG CHẠY HẾT TỪ A-Z) -->
+  <div id="cuteStartCurtain" class="cute-start-curtain">
+    <div class="curtain-bubble-card">
+      <div class="bunny-ears-deco">🐰 🌸 🐱</div>
+      <div class="curtain-stickers">
+        <span class="sticker-chip pink-chip">🎀 Happy 20/10</span>
+        <span class="sticker-chip yellow-chip">✨ Siêu Cấp Đáng Yêu</span>
+      </div>
+
+      <h1 class="curtain-cute-title">
+        Món Quà Ngọt Ngào Dành Riêng Cho<br>
+        <span class="highlight-names">Trần Mỹ Tâm & Lê Kiều Vy 💕</span>
+      </h1>
+
+      <p class="curtain-cute-desc">
+        Hành trình 3D mây kẹo ngọt tự động hoàn toàn.<br>
+        Hai bé cưng chỉ cần thả lỏng, bật loa và cùng bay vào xứ sở thần tiên nàooo!
+      </p>
+
+      <button id="startAutoFlightBtn" class="btn-bubble-start">
+        <span class="btn-sparkle-l">✨</span>
+        <span class="btn-main-txt">BẮT ĐẦU CHUYẾN BAY KẸO NGỌT 🚀</span>
+        <span class="btn-sparkle-r">💖</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- CUTE 3D STORY CAPTION OVERLAYS (TỰ ĐỘNG CHUYỂN THEO CAMERA) -->
+  <main class="story-stage">
+
+    <!-- CẢNH 0: CỔNG MÂY MARSHMALLOW -->
+    <div class="cute-card" id="card-0">
+      <div class="cloud-tape-deco"></div>
+      <div class="card-tag">☁️ TRẠM MÂY ĐẦU TIÊN ✨</div>
+      <div class="chibi-duo-float">
+        <div class="chibi-avatar-badge pink-glow">
+          <span class="chibi-emoji">🌸</span>
+          <span class="chibi-name">Mỹ Tâm</span>
+        </div>
+        <span class="flying-love-heart">💕</span>
+        <div class="chibi-avatar-badge mint-glow">
+          <span class="chibi-emoji">🌷</span>
+          <span class="chibi-name">Kiều Vy</span>
+        </div>
+      </div>
+      <h2 class="cute-heading">Chào 2 Nàng Thơ Của Team!</h2>
+      <p class="cute-body-text">
+        Hôm nay là ngày 20/10, ngày của hai bông hoa xinh đẹp và đáng yêu nhất văn phòng. 
+        Tàu bay mây kẹo ngọt đang đưa hai bạn đến những bất ngờ thú vị nhất nè...
+      </p>
+    </div>
+
+    <!-- CẢNH 1: VÙNG MÂY CỦA TRẦN MỸ TÂM -->
+    <div class="cute-card tam-card-theme" id="card-1">
+      <div class="cloud-tape-deco tape-pink"></div>
+      <div class="card-tag pink-tag">👑 NỮ THẦN RẠNG RỠ 🌸</div>
+      
+      <div class="profile-cute-row">
+        <div class="chibi-portrait-box">
+          <div class="chibi-frame frame-tam">
+            <span class="big-chibi">👩🏻‍🦰</span>
+            <span class="accessory-deco">🌺</span>
+          </div>
+          <div class="chibi-subtag">Trần Mỹ Tâm ✨</div>
+        </div>
+
+        <div class="profile-cute-info">
+          <div class="cute-nick">"Đại Tỷ Xinh Gái & Nụ Cười Nắng Mai"</div>
+          <h2 class="profile-hero-name">Trần Mỹ Tâm</h2>
+          <div class="sweet-letter-box">
+            <p>
+              Gửi chị <strong>Tâm</strong> xinh đẹp, người luôn nở nụ cười tươi tắn giúp cả phòng tràn đầy năng lượng tích cực! Cảm ơn Tâm vì sự dịu dàng, chu đáo và luôn gánh vác mọi việc cùng 500 anh em nha.
+            </p>
+            <p class="sweet-highlight">
+              Chúc Mỹ Tâm 20/10 nhan sắc đỉnh chóp, tiền vô ào ào như thác, việc gì cũng mượt mà hanh thông và luôn được yêu thương chiều chuộng hết nấc nhé! 🥰
+            </p>
+          </div>
+          <div class="cute-perks-list">
+            <span class="cute-perk">👑 Nhan sắc 100/100</span>
+            <span class="cute-perk">☕ Auto được mời nước/ăn vặt</span>
+            <span class="cute-perk">🛡️ Tự động né mọi deadline</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CẢNH 2: VÙNG MÂY CỦA LÊ KIỀU VY -->
+    <div class="cute-card vy-card-theme" id="card-2">
+      <div class="cloud-tape-deco tape-mint"></div>
+      <div class="card-tag mint-tag">🎀 BÉ CƯNG TRÀ SỮA 🌷</div>
+
+      <div class="profile-cute-row">
+        <div class="chibi-portrait-box">
+          <div class="chibi-frame frame-vy">
+            <span class="big-chibi">👧🏻</span>
+            <span class="accessory-deco">🧋</span>
+          </div>
+          <div class="chibi-subtag">Lê Kiều Vy 💖</div>
+        </div>
+
+        <div class="profile-cute-info">
+          <div class="cute-nick">"Bé Cưng Cute Hột Me & Tinh Nghịch"</div>
+          <h2 class="profile-hero-name">Lê Kiều Vy</h2>
+          <div class="sweet-letter-box">
+            <p>
+              Gửi bé <strong>Vy</strong> đáng yêu, vitamin vui vẻ không bao giờ cạn của cả nhóm! Có Vy trong team là ngày nào cũng rôm rả tiếng cười, không bao giờ thấy chán hay áp lực gì hết á.
+            </p>
+            <p class="sweet-highlight">
+              Chúc Vy 20/10 nhận quà mỏi cả tay, uống trà sữa full topping cỡ bự mà vẫn mi nhon chuẩn chỉnh, da dẻ hồng hào và lúc nào cũng cười tít mắt nha! 👑🧋
+            </p>
+          </div>
+          <div class="cute-perks-list">
+            <span class="cute-perk">🎀 Đáng yêu vô đối</span>
+            <span class="cute-perk">🧋 1 ly trà sữa full topping</span>
+            <span class="cute-perk">⭐ May mắn ngập tràn</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CẢNH 3: TÂM THƯ TỪ CẢ TEAM -->
+    <div class="cute-card team-card-theme" id="card-3">
+      <div class="cloud-tape-deco tape-yellow"></div>
+      <div class="card-tag yellow-tag">💌 LỜI THÚ TỘI DỄ THƯƠNG TỪ TEAM ✨</div>
+
+      <div class="team-cute-icons">
+        <span class="t-emoji">🙋‍♂️</span>
+        <span class="t-emoji">💐</span>
+        <span class="t-emoji">👨‍💻</span>
+        <span class="t-emoji">🎁</span>
+        <span class="t-emoji">🙋‍♂️</span>
+      </div>
+
+      <h2 class="cute-heading">Cảm Ơn Hai Bạn Rất Nhiều!</h2>
+
+      <div class="team-cute-speech">
+        <p>
+          "Team mình có thể hơi lầy lội, có lúc hơi ồn ào... nhưng vì có <strong>Tâm</strong> và <strong>Vy</strong>, mỗi ngày đi làm đều là một ngày ấm áp và tràn ngập niềm vui!"
+        </p>
+        <p class="speech-cute-lead">
+          Và bây giờ... chiếc tàu bay mây kẹo ngọt đang đưa hai bạn đến phần hồi hộp nhất nè... 👀
+        </p>
+      </div>
+    </div>
+
+    <!-- CẢNH 4: BẬT MÍ QUÀ NGOÀI ĐỜI THẬT (HỒI HỘP) -->
+    <div class="cute-card suspense-card-theme" id="card-4">
+      <div class="alert-cute-sticker">🚨 CHÚ Ý NÈ HAI BÉ CƯNG 🚨</div>
+
+      <h2 class="suspense-cute-title">
+        Ủa mà khoan đã... 🤔<br>
+        <span class="sub-cute-pink">Quà trên màn hình thì làm sao mà cầm được?</span>
+      </h2>
+
+      <p class="suspense-cute-p">
+        Team tui đâu có chuẩn bị mỗi cái trang web này đâu! <br>
+        <strong>MÓN QUÀ THẬT SỰ ĐANG Ở NGAY NGOÀI ĐỜI THẬT, NGAY CẠNH HAI BẠN ĐÓ! 🎁💐</strong>
+      </p>
+
+      <div class="rules-cute-notebook">
+        <div class="notebook-title">📜 THỂ LỆ HẠ CÁNH NHẬN QUÀ:</div>
+        <div class="rule-line">🌸 <strong>1.</strong> Hít một hơi thật sâu và chuẩn bị tinh thần vui vẻ.</div>
+        <div class="rule-line">🌸 <strong>2.</strong> Màn hình sẽ tự đếm ngược <strong>3... 2... 1...</strong></div>
+        <div class="rule-line highlight-cute-rule">
+          🙈 <strong>3. ĐÚNG 0S: MỸ TÂM VÀ KIỀU VY PHẢI NHẮM TỊT MẮT LẠI NGAY LẬP TỨC!</strong> Nghiêm cấm ti hí mắt dưới mọi hình thức nha!
+        </div>
+        <div class="rule-line">🌸 <strong>4.</strong> Xòe 2 tay xinh xắn ra và đợi lệnh từ các anh em!</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- CẢNH 5: MÀN ĐÊM NHẮM MẮT (THEATER MODE SIÊU CUTE) -->
+  <div id="cuteEyesClosedScreen" class="cute-eyes-closed-screen hidden">
+    <div class="cute-dark-sky"></div>
+    <div class="cute-theater-box">
+      <div class="monkey-bounce-anim">🙈</div>
+
+      <h1 class="theater-big-shout">NHẮM MẮT LẠI NGAY LẬP TỨC NÈ!</h1>
+
+      <div class="no-peeking-badge-cute">
+        🚫 CẤM TI HÍ NHA! TI HÍ LÀ BỊ MẤT QUÀ ĐÓ! 😜 🚫
+      </div>
+
+      <div class="cute-hand-guide">
+        <p class="guide-lead-text">Bây giờ <strong>Mỹ Tâm</strong> và <strong>Kiều Vy</strong> hãy:</p>
+        <div class="hands-cute-pill">
+          <span class="hands-icon">🤲</span>
+          <span>XÒE HAI BÀN TAY RA PHÍA TRƯỚC</span>
+        </div>
+        <p class="guide-follow-text">
+          Món quà thật sự đang được bí mật chuyển đến tận tay hai bạn... 🎁💐
+        </p>
+      </div>
+
+      <div class="cute-radar-ping">
+        <div class="sonar-dot"></div>
+        <span>ĐANG TRAO QUÀ NGOÀI ĐỜI THẬT... CHỜ TIẾNG HÔ NHÉ!</span>
+      </div>
+
+      <!-- Nút bí mật cho anh em trong team bấm khi trao quà xong -->
+      <div class="secret-reveal-btn-area">
+        <button id="unveilFinaleBtn" class="btn-cute-unveil" onclick="unveilGrandCelebration()">
+          🎉 BỌN TUI ĐÃ TRAO QUÀ XONG RỒI! MỞ MẮT RA NÀOOO! 🎊
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CẢNH 6: PHÁO HOA ĂN MỪNG SIÊU ĐẸP -->
+  <div id="cuteCelebrationScreen" class="cute-celebration-screen hidden">
+    <div class="celebration-candy-card">
+      <div class="top-candy-badge">HAPPY 20/10 TO OUR SWEETEST GIRLS 💖</div>
+      <div class="party-emojis-float">💐 🎁 🍰 🧋 👑 🥂</div>
+
+      <h1 class="celebration-pink-title">CHÚC MỪNG 20/10!</h1>
+      <h2 class="celebration-sub-title">MỸ TÂM & KIỀU VY LUÔN XINH ĐẸP VÀ HẠNH PHÚC!</h2>
+
+      <p class="celebration-sweet-p">
+        Hy vọng món quà nhỏ từ toàn thể anh em trong team làm hai bạn bất ngờ và mỉm cười thật rạng rỡ!
+      </p>
+      <p class="final-team-love">
+        Cảm ơn vì đã luôn là những người đồng đội tuyệt vời nhất! Yêu quý hai bạn rất nhiều! ❤️
+      </p>
+
+      <div class="celebration-btns">
+        <button class="btn-firework-burst" onclick="fireCuteConfetti()">
+          🎊 Bắn thêm pháo hoa ăn mừng! 🎆
+        </button>
+        <button class="btn-cute-replay" onclick="replayCuteJourney()">
+          🔄 Bay lại từ đầu
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ĐẾM NGƯỢC 3 GIÂY (3... 2... 1...) -->
+  <div id="cuteCountdownModal" class="cute-countdown-modal hidden">
+    <div class="countdown-candy-bubble">
+      <div class="countdown-call">CHUẨN BỊ NHẮM MẮT SAU...</div>
+      <div id="countdownNumBig" class="countdown-giant-digit">3</div>
+      <div class="countdown-sub-hint">Hít một hơi thật sâu nàooo 🌬️✨</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
