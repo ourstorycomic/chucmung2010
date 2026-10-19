@@ -187,7 +187,8 @@ function initCute3DScene() {
   scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0xfff5ea, 0.0018);
 
-  camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 1, 3500);
+  const initFov = window.innerWidth < 650 ? 78 : 65;
+  camera = new THREE.PerspectiveCamera(initFov, window.innerWidth / window.innerHeight, 1, 3500);
   camera.position.set(0, 0, 300);
 
   renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
@@ -369,8 +370,16 @@ function createCute3DFlowerRing() {
 function onResize() {
   if (!camera || !renderer) return;
   camera.aspect = window.innerWidth / window.innerHeight;
+  camera.fov = window.innerWidth < 650 ? 78 : 65;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+
+  if (bobaCup3D) {
+    bobaCup3D.position.x = window.innerWidth < 650 ? 28 : 55;
+  }
+  if (flowerBouquet3D) {
+    flowerBouquet3D.position.x = window.innerWidth < 650 ? -28 : -55;
+  }
 }
 
 let tick = 0;

@@ -89,9 +89,30 @@ body {
 
 @media (max-width: 650px) {
   .cute-top-bar {
-    padding: 10px 14px;
-    flex-wrap: wrap;
+    padding: 8px 12px;
     gap: 8px;
+  }
+  .cute-badge-pill {
+    padding: 4px 10px;
+    font-size: 0.72rem;
+  }
+  .cute-badge-pill span:nth-child(2) {
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+  .sound-label {
+    display: none;
+  }
+  .cute-sound-btn {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+  .candy-progress-track {
+    height: 10px;
+  }
+  .progress-candy-head {
+    font-size: 1.1rem;
+    top: -7px;
   }
 }
 
@@ -333,6 +354,10 @@ body {
   padding: 34px 36px;
   max-width: 720px;
   width: 90%;
+  max-height: calc(100vh - 75px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
   box-shadow: var(--shadow-cute);
   position: relative;
   display: none;
@@ -344,10 +369,16 @@ body {
   text-align: center;
 }
 
-@media (max-width: 600px) {
+.cute-card::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 650px) {
   .cute-card {
-    padding: 24px 18px;
-    border-radius: 24px;
+    padding: 20px 16px;
+    border-radius: 22px;
+    max-height: calc(100vh - 70px);
+    width: 94%;
   }
 }
 
@@ -475,7 +506,35 @@ body {
   .profile-cute-row {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 16px;
+    gap: 10px;
+  }
+  .chibi-frame {
+    width: 95px !important;
+    height: 95px !important;
+  }
+  .big-chibi {
+    font-size: 3.2rem !important;
+  }
+  .chibi-subtag {
+    font-size: 0.95rem !important;
+    margin-top: 6px !important;
+  }
+  .profile-hero-name {
+    font-size: 1.55rem !important;
+    margin-bottom: 4px !important;
+  }
+  .cute-nick {
+    font-size: 1.02rem !important;
+  }
+  .sweet-letter-box {
+    padding: 10px 12px !important;
+    font-size: 0.86rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 8px !important;
+  }
+  .cute-perk {
+    font-size: 0.72rem !important;
+    padding: 3px 8px !important;
   }
 }
 
@@ -1050,4 +1109,202 @@ body {
   font-size: 1.4rem;
   color: #f39c12;
   margin-top: 10px;
+}
+
+/* =========================================================
+   COMPREHENSIVE MOBILE PHONES & TABLETS RESPONSIVE RULES
+   ========================================================= */
+@media (max-width: 650px) {
+  .story-stage {
+    top: 50px;
+    padding: 12px;
+  }
+
+  .cute-card {
+    padding: 18px 14px;
+    border-radius: 20px;
+    max-height: calc(100vh - 66px);
+  }
+
+  .card-tag {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    margin-bottom: 8px;
+  }
+
+  .cute-heading {
+    font-size: 1.45rem;
+    margin-bottom: 6px;
+  }
+
+  .cute-body-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .chibi-emoji {
+    width: 56px;
+    height: 56px;
+    font-size: 2.2rem;
+  }
+
+  .chibi-name {
+    font-size: 0.95rem;
+  }
+
+  .team-cute-icons {
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+
+  .team-cute-speech {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .speech-cute-lead {
+    font-size: 1.05rem;
+    margin-top: 8px;
+  }
+
+  .suspense-cute-title {
+    font-size: 1.4rem;
+  }
+
+  .sub-cute-pink {
+    font-size: 1.15rem;
+  }
+
+  .suspense-cute-p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .rules-cute-notebook {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    gap: 6px;
+  }
+
+  /* Theater mode on mobile */
+  .cute-theater-box {
+    padding: 16px;
+  }
+
+  .monkey-bounce-anim {
+    font-size: 4.2rem;
+    margin-bottom: 8px;
+  }
+
+  .theater-big-shout {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .no-peeking-badge-cute {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    margin-bottom: 14px;
+  }
+
+  .guide-lead-text {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+
+  .hands-cute-pill {
+    font-size: 0.98rem;
+    padding: 8px 16px;
+    gap: 8px;
+  }
+
+  .hands-icon {
+    font-size: 1.6rem;
+  }
+
+  .guide-follow-text {
+    font-size: 0.9rem;
+  }
+
+  .cute-radar-ping {
+    font-size: 0.75rem;
+    padding: 5px 14px;
+    margin-bottom: 16px;
+  }
+
+  .btn-cute-unveil {
+    font-size: 0.92rem;
+    padding: 12px 20px;
+  }
+
+  /* Celebration on mobile */
+  .celebration-candy-card {
+    padding: 24px 16px;
+    border-radius: 22px;
+  }
+
+  .top-candy-badge {
+    font-size: 0.72rem;
+    padding: 3px 12px;
+    margin-bottom: 8px;
+  }
+
+  .party-emojis-float {
+    font-size: 2.4rem;
+    letter-spacing: 6px;
+    margin-bottom: 8px;
+  }
+
+  .celebration-pink-title {
+    font-size: 2rem;
+  }
+
+  .celebration-sub-title {
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+  }
+
+  .celebration-sweet-p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .final-team-love {
+    font-size: 1.15rem;
+    margin-top: 10px;
+  }
+
+  .celebration-btns {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .btn-firework-burst {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  .btn-cute-replay {
+    padding: 12px 18px;
+    font-size: 0.85rem;
+  }
+
+  /* Countdown modal on mobile */
+  .countdown-candy-bubble {
+    padding: 28px 32px;
+    border-radius: 28px;
+  }
+
+  .countdown-call {
+    font-size: 1.25rem;
+  }
+
+  .countdown-giant-digit {
+    font-size: 6.5rem;
+  }
+
+  .countdown-sub-hint {
+    font-size: 1.1rem;
+  }
 }
